@@ -1,0 +1,102 @@
+@import "../../var.scss";
+@import url("https://fonts.googleapis.com/css2?family=Kaisei+Opti&display=swap");
+
+.HomePage {
+  &__header {
+    height: 90vh;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &--form {
+      width: 40%;
+      display: grid;
+      grid-template-columns: 4fr 0.5fr;
+      border-radius: 1rem;
+      border: 1px solid black;
+      background-color: white;
+      overflow: hidden;
+
+      & input {
+        width: 100%;
+        font-size: 2rem;
+        padding: 1rem 1rem;
+        outline: none;
+        border: none;
+      }
+      & button {
+        outline: none;
+        background-color: white;
+        border: none;
+        font-size: 3rem;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__details {
+    margin-top: -10rem;
+    padding: 20rem 0 10rem 0;
+
+    & .anime {
+      margin: auto;
+      max-width: 105rem;
+      background-color: #212121;
+
+      box-shadow: 0rem 0.125rem 0.25rem 0rem rgba(14, 30, 37, 0.12),
+        0rem 0.125rem 1rem 0rem rgba(14, 30, 37, 0.32);
+
+      display: grid;
+      grid-template-columns: 30rem 1fr;
+
+      &__left {
+        padding: 5rem 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &--img {
+          width: 20rem;
+          height: 30rem;
+          margin-bottom: 2rem;
+        }
+        &--rating {
+          font-size: 2rem;
+          color: #f6b352;
+
+          & span {
+            color: #fff;
+          }
+        }
+      }
+
+      &__right {
+        padding: 5rem 3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        font-family: "Kaisei Opti", serif;
+        color: #fff;
+
+        & h1 {
+          font-size: 3.5rem;
+          color: #f68657;
+        }
+        & p {
+          font-size: 1.6rem;
+          text-align: justify;
+        }
+        & div {
+          font-size: 1.6rem;
+          & span {
+            color: #f68657;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
