@@ -1,7 +1,9 @@
 /* variables */
-$header-height: 5rem;
+$header-height: 7rem;
 $sidebar-width: 20rem;
 $cartbar-width: 30rem;
+
+$max-width: 130rem;
 
 $zIndex-1: 100;
 $zIndex-2: 80;
@@ -29,7 +31,7 @@ $color-green-2: #0f9d58;
 
 $card-radius: 0.5rem;
 
-$login-primary: #243b55;
+$text-primary: #243b55;
 
 /*  responsive media  */
 @mixin respond($breakpoint) {

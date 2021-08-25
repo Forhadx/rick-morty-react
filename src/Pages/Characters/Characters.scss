@@ -1,0 +1,223 @@
+@import "../../var.scss";
+
+.character__page {
+  width: 100%;
+  padding-top: 2rem;
+
+  &--header {
+    max-width: $max-width;
+    margin: auto;
+    margin-bottom: 2rem;
+    padding: 2rem 2rem;
+    border-radius: 1rem;
+    background-color: #fff;
+    color: $text-primary;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    box-shadow: 0rem 0.44rem 1.81rem 0rem rgba(100, 100, 111, 0.2);
+  }
+
+  &--Details {
+    max-width: $max-width;
+    margin: auto;
+    padding: 2rem 0;
+    border-radius: 1rem;
+    background-color: #fff;
+    color: $text-primary;
+    box-shadow: 0rem 0.44rem 1.81rem 0rem rgba(100, 100, 111, 0.2);
+  }
+}
+
+.search {
+  padding: 2rem;
+  border-bottom: 2px solid $color-gray-2;
+
+  &__forms {
+    display: grid;
+    grid-template-columns: 80% 20%;
+
+    &--form {
+      display: grid;
+      grid-template-columns: 1fr 7rem;
+
+      & input {
+        font-size: 1.6rem;
+        padding: 0.3rem 1rem;
+        border: 1px solid $color-green-2;
+        outline: none;
+      }
+
+      & button {
+        border: none;
+        outline: none;
+        background-color: $color-green-2;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+    }
+
+    &--filter {
+      text-align: center;
+
+      & button {
+        padding: 0.3rem 2rem;
+        font-size: 1.8rem;
+        text-transform: uppercase;
+        outline: none;
+        border: none;
+        color: #f68657;
+        color: $text-primary;
+        background-color: #fff;
+        border: 2px solid $color-green-2;
+        border-radius: 1rem;
+        cursor: pointer;
+
+        & span {
+          font-size: 2rem;
+          color: $color-green-2;
+          margin-right: 0.5rem;
+        }
+
+        &:hover {
+          background-color: #f68657;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.filters {
+  display: none;
+}
+
+.character {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  &__card {
+    width: 40rem;
+    height: 15rem;
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: 15rem 25rem;
+    grid-row: 15rem;
+    box-shadow: 0rem 0.125rem 0.5rem rgba(0, 0, 0, 0.15);
+    border-radius: 0.8rem;
+    background-color: #fff;
+    background-color: #212121;
+    background-color: #383a3f5d;
+    background-color: #606c880e;
+    color: #fff;
+    border-right: 1px solid green;
+    border-bottom: 1px solid green;
+
+    overflow: hidden;
+
+    &-image {
+      overflow: hidden;
+      padding: 0.5rem;
+      & img {
+        width: 100%;
+        height: 100%;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+
+    &--details {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1rem;
+
+      &-name {
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: #f6b352;
+        color: $text-primary;
+        cursor: pointer;
+      }
+
+      &-others {
+        color: $text-primary;
+        & span {
+          color: #f68657;
+          font-size: 1.4rem;
+          margin-left: 0.5rem;
+          margin-right: 0.5rem;
+          cursor: pointer;
+
+          &:first-child {
+            margin-left: 0;
+          }
+
+          &:hover {
+            color: #f6b352;
+          }
+        }
+      }
+
+      &-episode {
+        p {
+          color: $color-gray-1;
+          font-size: 1.2rem;
+        }
+        h1 {
+          color: #f68657;
+          font-size: 1.4rem;
+          font-weight: normal;
+          cursor: pointer;
+
+          &:hover {
+            color: #f6b352;
+          }
+        }
+      }
+
+      &-location {
+        p {
+          color: $color-gray-1;
+          font-size: 1.2rem;
+        }
+        h1 {
+          color: #f68657;
+          font-size: 1.4rem;
+          font-weight: normal;
+          cursor: pointer;
+
+          &:hover {
+            color: #f6b352;
+          }
+        }
+      }
+    }
+  }
+}
+
+.paginations {
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid $color-gray-2;
+  margin: 2rem;
+  border-radius: 1rem;
+
+  & button {
+    border: none;
+    outline: none;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    background-color: $color-green-2;
+    color: #fff;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+}

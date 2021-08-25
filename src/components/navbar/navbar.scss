@@ -19,7 +19,7 @@
 
     margin: auto;
     padding: 0 2rem;
-    max-width: 105rem;
+    max-width: $max-width;
     height: 100%;
 
     &__logo {
@@ -41,7 +41,8 @@
           padding: 0.5rem 1rem;
           border-radius: 0.8rem;
           color: #f68657;
-          font-size: 2rem;
+          color: #3f4c6b;
+          font-size: 1.6rem;
           border: 1px solid green;
 
           &:hover {
