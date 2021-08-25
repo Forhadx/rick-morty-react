@@ -15,16 +15,24 @@ const Navbar = () => {
         ></Link>
         <div className="navbar__nav">
           <div className="navbar__nav--item">
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/" exact>
+              Home
+            </NavLink>
           </div>
           <div className="navbar__nav--item">
-            <NavLink to="/characters">Characters</NavLink>
+            <NavLink to="/characters" exact>
+              Characters
+            </NavLink>
           </div>
           <div className="navbar__nav--item">
-            <NavLink to="/episodes">Episodes</NavLink>
+            <NavLink to="/episodes" exact>
+              Episodes
+            </NavLink>
           </div>
           <div className="navbar__nav--item">
-            <NavLink to="/locations">Locations</NavLink>
+            <NavLink to="/locations" exact>
+              Locations
+            </NavLink>
           </div>
         </div>
       </div>

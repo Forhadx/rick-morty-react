@@ -40,12 +40,12 @@
         & a {
           padding: 0.5rem 1rem;
           border-radius: 0.8rem;
-          color: #f68657;
           color: #3f4c6b;
           font-size: 1.6rem;
           border: 1px solid green;
 
-          &:hover {
+          &:hover,
+          &.active {
             background-color: #f68657;
             color: #fff;
             transition: all 0.5s;

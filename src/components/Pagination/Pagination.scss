@@ -1,0 +1,21 @@
+@import "../../var.scss";
+
+.paginations {
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid $color-gray-2;
+  margin: 2rem;
+  border-radius: 1rem;
+
+  & button {
+    border: none;
+    outline: none;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    background-color: $color-green-2;
+    color: #fff;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+}

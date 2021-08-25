@@ -3,9 +3,9 @@ import "./App.scss";
 import Navbar from "./components/navbar/navbar";
 
 import Home from "./Pages/Home/Home";
-import Characters from "./Pages/Characters/Characters";
-import Episodes from "./Pages/Episodes/Episodes";
-import Locations from "./Pages/Locations/Locations";
+import Characters from "./Pages/Characters";
+import Episodes from "./Pages/Episodes";
+import Locations from "./Pages/Locations";
 import { Route, Switch } from "react-router";
 
 const App = () => {
