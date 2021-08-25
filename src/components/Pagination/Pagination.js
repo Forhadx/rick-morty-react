@@ -1,12 +1,12 @@
 import React from "react";
 import "./Pagination.scss";
 
-const Pagination = () => {
+const Pagination = (props) => {
   return (
     <div className="paginations">
-      <button>PREV</button>
-      <button>1</button>
-      <button>NEXT</button>
+      {props.prevPage && <button onClick={props.prevPageHandler}>PREV</button>}
+      <button>{props.crntPage}</button>
+      {props.nextPage && <button onClick={props.nextpageHandler}>NEXT</button>}
     </div>
   );
 };

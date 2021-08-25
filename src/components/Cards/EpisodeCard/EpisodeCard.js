@@ -1,15 +1,18 @@
 import React from "react";
 import "./EpisodeCard.scss";
 
-const EpisodeCard = () => {
+const EpisodeCard = (props) => {
   return (
     <div className="episode">
-      <div className="episode__card">
-        <div className="episode__card--name">
-          <span>S01E01:</span>Meeseeks and Destroy
+      {props.episodes.map((epi) => (
+        <div className="episode__card" key={epi.id}>
+          <div className="episode__card--name">
+            <span>{epi.episode}:</span>
+            {epi.name}
+          </div>
+          <div className="episode__card--date">{epi.air_date}</div>
         </div>
-        <div className="episode__card--date">January 20, 2014</div>
-      </div>
+      ))}
     </div>
   );
 };

@@ -18,7 +18,7 @@
     border-radius: 0.8rem;
     background-color: #fff;
     cursor: pointer;
-    box-shadow: 0rem 0.125rem 0.5rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0rem 0.125rem 0.5rem rgba(0, 128, 0, 0.445);
 
     &:hover {
       box-shadow: 0rem 0.125rem 0.25rem 0rem rgba(14, 30, 37, 0.12),
@@ -27,7 +27,6 @@
 
     &--name {
       font-size: 1.6rem;
-      text-align: center;
       font-weight: bold;
       color: #f6b352;
       color: #f68657;

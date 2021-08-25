@@ -1,18 +1,22 @@
 import React from "react";
 import "./LocationsCard.scss";
 
-const LocationsCard = () => {
+const LocationsCard = (props) => {
   return (
     <div className="location">
-      <div className="location__card">
-        <div className="location__card--name">Gromflom Prime</div>
-        <div className="location__card--dimension">
-          <span>Dimension:</span>Replacement Dimension
+      {props.locations.map((loc) => (
+        <div className="location__card" key={loc.id}>
+          <div className="location__card--name">{loc.name}</div>
+          <div className="location__card--dimension">
+            <span>Dimension:</span>
+            {loc.dimension}
+          </div>
+          <div className="location__card--type">
+            <span>Type:</span>
+            {loc.type}
+          </div>
         </div>
-        <div className="location__card--type">
-          <span>Type:</span>Planet
-        </div>
-      </div>
+      ))}
     </div>
   );
 };
