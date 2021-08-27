@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/index";
 
+import SearchResult from "../components/SearchResult/SearchResult";
 import Pagination from "../components/Pagination/Pagination";
 import PageSearch from "../components/PageSearch/PageSearch";
 import LocationFilter from "../components/Filters/LocationFilter/LocationsFilter";
@@ -26,13 +27,15 @@ const Locations = (props) => {
   };
 
   const nextpageHandler = () => {
-    console.log("next");
     props.onNextPage();
   };
 
   const prevPageHandler = () => {
-    console.log("prev");
     props.onPrevPage();
+  };
+
+  const firstPageHandler = () => {
+    props.onFirstPage();
   };
 
   return (
@@ -46,6 +49,7 @@ const Locations = (props) => {
           filterToggle={filterToggleHandler}
         />
         <LocationFilter isOpen={flag} />
+        <SearchResult />
         {props.loading ? (
           <Spinner />
         ) : (
@@ -57,6 +61,7 @@ const Locations = (props) => {
               prevPage={props.prevPage}
               nextpageHandler={nextpageHandler}
               prevPageHandler={prevPageHandler}
+              firstPageHandler={firstPageHandler}
             />
           </React.Fragment>
         )}
@@ -80,6 +85,7 @@ const mapDispatchToProps = (dispatch) => {
     onFetchLocations: (p) => dispatch(actions.fetchLocations(p)),
     onNextPage: () => dispatch(actions.nextPageLoc()),
     onPrevPage: () => dispatch(actions.prevPageLoc()),
+    onFirstPage: () => dispatch(actions.firstPageLoc()),
   };
 };
 

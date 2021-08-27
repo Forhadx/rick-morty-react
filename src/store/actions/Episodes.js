@@ -68,3 +68,9 @@ export const nextPageEpi = () => {
     type: actionTypes.NEXT_PAGE,
   };
 };
+
+export const firstPageEpi = () => {
+  return {
+    type: actionTypes.FIRST_PAGE,
+  };
+};

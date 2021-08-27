@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/index";
 
+import SearchResult from "../components/SearchResult/SearchResult";
 import CharacterCard from "../components/Cards/CharacterCard/CharacterCard";
 import Pagination from "../components/Pagination/Pagination";
 import CharacterFilter from "../components/Filters/CharacterFilter/CharacterFilter";
@@ -10,15 +11,42 @@ import Spinner from "../components/Spinner/Spinner";
 
 const Characters = (props) => {
   const [flag, setFlag] = useState(false);
+  const [isSearch, setIsSearch] = useState(false);
+  const [isFilterSearch, setIsFilterSearch] = useState(false);
+  const [filterArray, setFilterArray] = useState([]);
+  const [name, setName] = useState("");
+  const [status, setStatus] = useState("");
+  const [species, setSpecies] = useState("");
+  const [type, setType] = useState("");
+  const [gender, setGender] = useState("");
 
-  const { onFetchCharacter, crntPage } = props;
+  const { onFetchCharacter, onFilterCharacter, crntPage } = props;
 
   useEffect(() => {
-    onFetchCharacter(crntPage);
-  }, [onFetchCharacter, crntPage]);
+    if (isSearch) {
+      onFilterCharacter(crntPage, name, status, species, type, gender);
+    } else {
+      onFetchCharacter(crntPage);
+    }
+  }, [
+    onFetchCharacter,
+    onFilterCharacter,
+    crntPage,
+    name,
+    status,
+    species,
+    type,
+    gender,
+    isSearch,
+  ]);
 
-  const searchValuehandler = (val) => {
-    console.log("val", val);
+  const searchValuehandler = (n) => {
+    // console.log("val", n);
+    setName(n);
+    setIsSearch(true);
+    //let p = 1;
+    setFilterArray([n]);
+    onFilterCharacter(1, n, status, species, type, gender);
   };
 
   const filterToggleHandler = () => {
@@ -33,6 +61,23 @@ const Characters = (props) => {
     props.onPrevPage();
   };
 
+  const firstPageHandler = () => {
+    props.onFirstPage();
+  };
+
+  const clearFilterHandler = () => {
+    setIsSearch(false);
+    setFilterArray([]);
+    setName("");
+    setStatus("");
+    setSpecies("");
+    setType("");
+    setGender("");
+    props.onFirstPage();
+  };
+
+  //console.log("char: ", props.characters);
+
   return (
     <div className="page">
       <div className="page--header">
@@ -42,8 +87,15 @@ const Characters = (props) => {
         <PageSearch
           searchValue={searchValuehandler}
           filterToggle={filterToggleHandler}
+          nav={"charaters"}
         />
         <CharacterFilter isOpen={flag} />
+        <SearchResult
+          clearFilter={clearFilterHandler}
+          count={props.count}
+          nav={"charaters"}
+          filterArray={filterArray}
+        />
         {props.loading ? (
           <Spinner />
         ) : (
@@ -55,6 +107,7 @@ const Characters = (props) => {
               prevPage={props.prevPage}
               nextpageHandler={nextpageHandler}
               prevPageHandler={prevPageHandler}
+              firstPageHandler={firstPageHandler}
             />
           </React.Fragment>
         )}
@@ -70,14 +123,20 @@ const mapStateToProps = (state) => {
     crntPage: state.char.crntPage,
     nextPage: state.char.nextPage,
     prevPage: state.char.prevPage,
+    count: state.char.count,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onFetchCharacter: (p) => dispatch(actions.fetchCharacter(p)),
+    onFilterCharacter: (page, name, status, species, type, gender) =>
+      dispatch(
+        actions.filterCharacter(page, name, status, species, type, gender)
+      ),
     onNextPage: () => dispatch(actions.nextPage()),
     onPrevPage: () => dispatch(actions.prevPage()),
+    onFirstPage: () => dispatch(actions.firstPage()),
   };
 };
 

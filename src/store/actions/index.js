@@ -1,5 +1,21 @@
-export { fetchCharacter, prevPage, nextPage } from "./characters";
+export {
+  fetchCharacter,
+  filterCharacter,
+  prevPage,
+  nextPage,
+  firstPage,
+} from "./characters";
 
-export { fetchLocations, prevPageLoc, nextPageLoc } from "./Location";
+export {
+  fetchLocations,
+  prevPageLoc,
+  nextPageLoc,
+  firstPageLoc,
+} from "./Location";
 
-export { fetchEpisodes, prevPageEpi, nextPageEpi } from "./Episodes";
+export {
+  fetchEpisodes,
+  prevPageEpi,
+  nextPageEpi,
+  firstPageEpi,
+} from "./Episodes";

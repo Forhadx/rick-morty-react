@@ -66,3 +66,9 @@ export const nextPageLoc = () => {
     type: actionTypes.NEXT_PAGE,
   };
 };
+
+export const firstPageLoc = () => {
+  return {
+    type: actionTypes.FIRST_PAGE,
+  };
+};

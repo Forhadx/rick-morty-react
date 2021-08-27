@@ -38,6 +38,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         crntPage: state.crntPage + 1,
       };
+    case actionTypes.FIRST_PAGE:
+      return {
+        ...state,
+        crntPage: 1,
+      };
     default:
       return state;
   }

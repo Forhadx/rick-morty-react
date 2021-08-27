@@ -7,10 +7,10 @@ const PageSearch = (props) => {
 
   const formHandler = (e) => {
     e.preventDefault();
-    //  console.log("in val: ", value);
     if (value) {
       props.searchValue(value);
     }
+    setValue("");
   };
 
   return (
@@ -19,7 +19,8 @@ const PageSearch = (props) => {
         <form className="search__forms--form" onSubmit={formHandler}>
           <input
             type="text"
-            placeholder="search for character"
+            placeholder={`search for ${props.nav}`}
+            value={value}
             onChange={(e) => setValue(e.target.value)}
           />
           <button type="submit">search</button>
