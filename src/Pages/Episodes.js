@@ -5,7 +5,7 @@ import * as actions from "../store/actions/index";
 import SearchResult from "../components/SearchResult/SearchResult";
 import Pagination from "../components/Pagination/Pagination";
 import PageSearch from "../components/PageSearch/PageSearch";
-import EpisodeFilter from "../components/Filters/EpisodeFilter/EpisodeFilter";
+import EpisodeFilter from "../components/Filters/EpisodeFilter";
 import EpisodeCard from "../components/Cards/EpisodeCard/EpisodeCard";
 import Spinner from "../components/Spinner/Spinner";
 
@@ -34,6 +34,7 @@ const Episodes = (props) => {
   };
 
   const advaceFilterHandler = (n, epi) => {
+    props.onFirstPage();
     setIsSearch(true);
     setName(n);
     setEpisode(epi);
@@ -94,23 +95,27 @@ const Episodes = (props) => {
           filterArray={filterArray}
           error={props.err}
         />
-        {props.loading ? (
-          <Spinner />
-        ) : (
-          <React.Fragment>
-            <EpisodeCard episodes={props.episodes} />
-            {!props.err && (
-              <Pagination
-                crntPage={props.crntPage}
-                nextPage={props.nextPage}
-                prevPage={props.prevPage}
-                nextpageHandler={nextpageHandler}
-                prevPageHandler={prevPageHandler}
-                firstPageHandler={firstPageHandler}
-              />
-            )}
-          </React.Fragment>
-        )}
+        <div>
+          <button>up</button>
+          {props.loading ? (
+            <Spinner />
+          ) : (
+            <React.Fragment>
+              <EpisodeCard episodes={props.episodes} />
+              {!props.err && (
+                <Pagination
+                  crntPage={props.crntPage}
+                  nextPage={props.nextPage}
+                  prevPage={props.prevPage}
+                  nextpageHandler={nextpageHandler}
+                  prevPageHandler={prevPageHandler}
+                  firstPageHandler={firstPageHandler}
+                />
+              )}
+            </React.Fragment>
+          )}
+        </div>
+        <div>Characters</div>
       </div>
     </div>
   );

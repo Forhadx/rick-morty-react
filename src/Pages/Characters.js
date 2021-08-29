@@ -5,7 +5,7 @@ import * as actions from "../store/actions/index";
 import SearchResult from "../components/SearchResult/SearchResult";
 import CharacterCard from "../components/Cards/CharacterCard/CharacterCard";
 import Pagination from "../components/Pagination/Pagination";
-import CharacterFilter from "../components/Filters/CharacterFilter/CharacterFilter";
+import CharacterFilter from "../components/Filters/CharacterFilter";
 import PageSearch from "../components/PageSearch/PageSearch";
 import Spinner from "../components/Spinner/Spinner";
 
@@ -47,6 +47,7 @@ const Characters = (props) => {
   };
 
   const advaceFilterHandler = (n, st, sp, t, g) => {
+    props.onFirstPage();
     setIsSearch(true);
     setName(n);
     setStatus(st);
@@ -55,6 +56,10 @@ const Characters = (props) => {
     setGender(g);
     setFilterArray([n, st, sp, t, g]);
     onFilterCharacter(1, n, st, sp, t, g);
+  };
+
+  const x = (st) => {
+    console.log("xxx: ", st);
   };
 
   const idsFilterHandler = (idsAarry) => {
@@ -117,7 +122,11 @@ const Characters = (props) => {
           <Spinner />
         ) : (
           <React.Fragment>
-            <CharacterCard characters={props.characters} />
+            <CharacterCard
+              characters={props.characters}
+              advaceFilter={advaceFilterHandler}
+              x={x}
+            />
             {!props.err && (
               <Pagination
                 crntPage={props.crntPage}

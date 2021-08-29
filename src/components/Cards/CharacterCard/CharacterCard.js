@@ -12,8 +12,23 @@ const CharacterCard = (props) => {
           <div className="character__card--details">
             <div className="character__card--details-name">{char.name}</div>
             <div className="character__card--details-others">
-              <span>{char.status}</span>-<span>{char.gender}</span>-
-              <span>{char.species}</span>
+              <span
+                onClick={() => props.advaceFilter("", char.status, "", "", "")}
+              >
+                {char.status}
+              </span>
+              -
+              <span
+                onClick={() => props.advaceFilter("", "", "", "", char.gender)}
+              >
+                {char.gender}
+              </span>
+              -
+              <span
+                onClick={() => props.advaceFilter("", "", char.species, "", "")}
+              >
+                {char.species}
+              </span>
             </div>
             <div className="character__card--details-episode">
               <p>First seen in:</p>
@@ -31,3 +46,7 @@ const CharacterCard = (props) => {
 };
 
 export default CharacterCard;
+
+/*
+onClick={props.advaceFilter("", char.status, "", "", "")}
+*/

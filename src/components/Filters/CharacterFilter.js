@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ImCancelCircle } from "react-icons/im";
-import "./CharacterFilter.scss";
+import "./AllFilter.scss";
 import classNames from "classnames";
 
 const CharacterFilter = (props) => {

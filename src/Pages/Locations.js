@@ -5,7 +5,7 @@ import * as actions from "../store/actions/index";
 import SearchResult from "../components/SearchResult/SearchResult";
 import Pagination from "../components/Pagination/Pagination";
 import PageSearch from "../components/PageSearch/PageSearch";
-import LocationFilter from "../components/Filters/LocationFilter/LocationsFilter";
+import LocationFilter from "../components/Filters/LocationsFilter";
 import LocationCard from "../components/Cards/LocationCard/LocationCard";
 import Spinner from "../components/Spinner/Spinner";
 
@@ -43,6 +43,7 @@ const Locations = (props) => {
   };
 
   const advaceFilterHandler = (n, t, d) => {
+    props.onFirstPage();
     setIsSearch(true);
     setName(n);
     setType(t);
