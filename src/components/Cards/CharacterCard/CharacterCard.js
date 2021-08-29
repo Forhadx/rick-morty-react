@@ -4,8 +4,8 @@ import "./CharacterCard.scss";
 const CharacterCard = (props) => {
   return (
     <div className="character">
-      {props.characters.map((char) => (
-        <div className="character__card" key={char.id}>
+      {props.characters.map((char, index) => (
+        <div className="character__card" key={index}>
           <div className="character__card-image">
             <img className="bgImg" src={char.image} alt={char.name} />
           </div>

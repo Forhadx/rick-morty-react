@@ -1,6 +1,7 @@
 export {
   fetchCharacter,
   filterCharacter,
+  idsCharacter,
   prevPage,
   nextPage,
   firstPage,
@@ -8,6 +9,8 @@ export {
 
 export {
   fetchLocations,
+  filterLocations,
+  idsLocations,
   prevPageLoc,
   nextPageLoc,
   firstPageLoc,
@@ -15,6 +18,8 @@ export {
 
 export {
   fetchEpisodes,
+  filterEpisodes,
+  idsEpisodes,
   prevPageEpi,
   nextPageEpi,
   firstPageEpi,

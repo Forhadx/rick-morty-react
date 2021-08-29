@@ -12,7 +12,6 @@ import Spinner from "../components/Spinner/Spinner";
 const Characters = (props) => {
   const [flag, setFlag] = useState(false);
   const [isSearch, setIsSearch] = useState(false);
-  const [isFilterSearch, setIsFilterSearch] = useState(false);
   const [filterArray, setFilterArray] = useState([]);
   const [name, setName] = useState("");
   const [status, setStatus] = useState("");
@@ -41,12 +40,26 @@ const Characters = (props) => {
   ]);
 
   const searchValuehandler = (n) => {
-    // console.log("val", n);
     setName(n);
     setIsSearch(true);
-    //let p = 1;
     setFilterArray([n]);
     onFilterCharacter(1, n, status, species, type, gender);
+  };
+
+  const advaceFilterHandler = (n, st, sp, t, g) => {
+    setIsSearch(true);
+    setName(n);
+    setStatus(st);
+    setSpecies(sp);
+    setType(t);
+    setGender(g);
+    setFilterArray([n, st, sp, t, g]);
+    onFilterCharacter(1, n, st, sp, t, g);
+  };
+
+  const idsFilterHandler = (idsAarry) => {
+    setFilterArray(idsAarry);
+    props.onIdsCharacter(idsAarry);
   };
 
   const filterToggleHandler = () => {
@@ -74,9 +87,8 @@ const Characters = (props) => {
     setType("");
     setGender("");
     props.onFirstPage();
+    onFetchCharacter(1);
   };
-
-  //console.log("char: ", props.characters);
 
   return (
     <div className="page">
@@ -89,26 +101,33 @@ const Characters = (props) => {
           filterToggle={filterToggleHandler}
           nav={"charaters"}
         />
-        <CharacterFilter isOpen={flag} />
+        <CharacterFilter
+          isOpen={flag}
+          advaceFilter={advaceFilterHandler}
+          idsFilter={idsFilterHandler}
+        />
         <SearchResult
           clearFilter={clearFilterHandler}
           count={props.count}
           nav={"charaters"}
           filterArray={filterArray}
+          error={props.err}
         />
         {props.loading ? (
           <Spinner />
         ) : (
           <React.Fragment>
             <CharacterCard characters={props.characters} />
-            <Pagination
-              crntPage={props.crntPage}
-              nextPage={props.nextPage}
-              prevPage={props.prevPage}
-              nextpageHandler={nextpageHandler}
-              prevPageHandler={prevPageHandler}
-              firstPageHandler={firstPageHandler}
-            />
+            {!props.err && (
+              <Pagination
+                crntPage={props.crntPage}
+                nextPage={props.nextPage}
+                prevPage={props.prevPage}
+                nextpageHandler={nextpageHandler}
+                prevPageHandler={prevPageHandler}
+                firstPageHandler={firstPageHandler}
+              />
+            )}
           </React.Fragment>
         )}
       </div>
@@ -124,6 +143,7 @@ const mapStateToProps = (state) => {
     nextPage: state.char.nextPage,
     prevPage: state.char.prevPage,
     count: state.char.count,
+    err: state.char.error,
   };
 };
 
@@ -134,6 +154,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(
         actions.filterCharacter(page, name, status, species, type, gender)
       ),
+    onIdsCharacter: (idsAarry) => dispatch(actions.idsCharacter(idsAarry)),
     onNextPage: () => dispatch(actions.nextPage()),
     onPrevPage: () => dispatch(actions.prevPage()),
     onFirstPage: () => dispatch(actions.firstPage()),

@@ -1,6 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import axios from "axios";
 
+/*  FETCHING CHARACTER DATA  */
 export const fetchCharacterStart = () => {
   return {
     type: actionTypes.FETCH_CHARACTERS_START,
@@ -15,9 +16,10 @@ export const fetchCharacterSuccess = (characters, pages) => {
   };
 };
 
-export const fetchCharacterFail = () => {
+export const fetchCharacterFail = (err) => {
   return {
     type: actionTypes.FETCH_CHARACTERS_FAIL,
+    error: err,
   };
 };
 
@@ -63,11 +65,12 @@ export const fetchCharacter = (page) => {
         )
       );
     } catch (err) {
-      console.log(err);
+      fetchCharacterFail(err);
     }
   };
 };
 
+/*  PAGINATIONS   */
 export const prevPage = () => {
   return {
     type: actionTypes.PREV_PAGE,
@@ -86,6 +89,7 @@ export const firstPage = () => {
   };
 };
 
+/*  FILTERING CHARACTERS  */
 export const filterCharacterStart = () => {
   return {
     type: actionTypes.FILTER_CHARACTERS_START,
@@ -100,9 +104,10 @@ export const filterCharacterSuccess = (characters, pages) => {
   };
 };
 
-export const filterCharacterFail = () => {
+export const filterCharacterFail = (err) => {
   return {
     type: actionTypes.FILTER_CHARACTERS_FAIL,
+    error: err,
   };
 };
 
@@ -154,7 +159,67 @@ export const filterCharacter = (page, name, status, species, type, gender) => {
         )
       );
     } catch (err) {
-      console.log("er: ", err);
+      dispatch(filterCharacterFail(err));
+    }
+  };
+};
+
+/* FIND CHARACTER BY IDS*/
+export const idsCharacterStart = () => {
+  return {
+    type: actionTypes.IDS_CHARACTERS_START,
+  };
+};
+
+export const idsCharacterSuccess = (characters) => {
+  return {
+    type: actionTypes.IDS_CHARACTERS_SUCCESS,
+    characters: characters,
+  };
+};
+
+export const idsCharacterFail = (err) => {
+  return {
+    type: actionTypes.IDS_CHARACTERS_FAIL,
+    error: err,
+  };
+};
+
+export const idsCharacter = (idsArray) => {
+  return async (dispatch) => {
+    dispatch(filterCharacterStart());
+    try {
+      const graphqlQuery = {
+        query: `{
+          charactersByIds(ids: "${idsArray}") {
+            id
+            name
+            status
+            species
+            gender
+            image
+            location{
+              id
+              name
+            }
+            episode{
+              id
+              name
+            }
+          }
+        }`,
+      };
+      let result = await axios.post(
+        "https://rickandmortyapi.com/graphql",
+        graphqlQuery
+      );
+      let copyFetchcharacter = [];
+      for (let char of result.data.data.charactersByIds) {
+        copyFetchcharacter.push(char);
+      }
+      dispatch(idsCharacterSuccess([...copyFetchcharacter]));
+    } catch (err) {
+      dispatch(idsCharacterFail(err));
     }
   };
 };

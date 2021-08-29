@@ -1,47 +1,124 @@
-import React from "react";
+import React, { useState } from "react";
+import { ImCancelCircle } from "react-icons/im";
 import "./CharacterFilter.scss";
 import classNames from "classnames";
 
 const CharacterFilter = (props) => {
+  const [idArray, setIdArray] = useState([]);
+  const [idNum, setIdNum] = useState("");
+  const [name, setName] = useState("");
+  const [status, setStatus] = useState("");
+  const [species, setSpecies] = useState("");
+  const [type, setType] = useState("");
+  const [gender, setGender] = useState("");
+
+  const addIdInArrayHandler = () => {
+    if (!idArray.includes(idNum) && idNum !== "" && idNum <= 671) {
+      setIdArray([...idArray, idNum]);
+      setIdNum("");
+    }
+  };
+
+  const removeIdfromArrayHandler = (val) => {
+    setIdArray(idArray.filter((x) => x !== val));
+  };
+
+  const idsFilterHandler = () => {
+    setIdArray([]);
+    props.idsFilter(idArray);
+  };
+
+  const advaceFilterHandler = (e) => {
+    e.preventDefault();
+    if (name || status || species || type || gender) {
+      props.advaceFilter(name, status, species, type, gender);
+    }
+    setName("");
+    setStatus("");
+    setSpecies("");
+    setType("");
+    setGender("");
+  };
+
   return (
     <div className={classNames("filters", { open: props.isOpen })}>
       <div className="advance__filter">
         <h2 className="advance__filter--header">advance filter</h2>
-        <form className="advance__filter--form">
+        <form className="advance__filter--form" onSubmit={advaceFilterHandler}>
           <div className="advance__filter--form-div">
-            <label>Enter charater name</label>
-            <input type="text" placeholder="enter name" />
+            <label>name</label>
+            <input
+              type="text"
+              placeholder="enter charater name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </div>
           <div className="advance__filter--form-div">
-            <label>Enter charater status</label>
-            <input type="text" placeholder="enter status" />
+            <label>status</label>
+            <input
+              type="text"
+              placeholder="enter charater status"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+            />
           </div>
           <div className="advance__filter--form-div">
-            <label>Enter charater species</label>
-            <input type="text" placeholder="enter species" />
+            <label>species</label>
+            <input
+              type="text"
+              placeholder="enter charater species"
+              value={species}
+              onChange={(e) => setSpecies(e.target.value)}
+            />
           </div>
           <div className="advance__filter--form-div">
-            <label>Enter charater type</label>
-            <input type="text" placeholder="enter type" />
+            <label>type</label>
+            <input
+              type="text"
+              placeholder="enter charater type"
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+            />
           </div>
           <div className="advance__filter--form-div">
-            <label>Enter charater gender</label>
-            <input type="text" placeholder="enter gender" />
+            <label>gender</label>
+            <input
+              type="text"
+              placeholder="enter charater gender"
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+            />
           </div>
-          <button>Search Filter</button>
+          <div className="advance__filter--form-div"></div>
+          <button type="submit">Search Filter</button>
         </form>
       </div>
 
       <div className="ids__filter">
-        <h2 className="ids__filter">Filter By Ids</h2>
-        <form className="ids__filter--form">
-          <div className="ids__filter--form-div">
-            <input type="number" placeholder="enter id" />
-            <button>add</button>
-          </div>
-          <div>number</div>
-          <button>Search Ids</button>
-        </form>
+        <h2 className="ids__filter--header">Filter By Ids</h2>
+        <div className="ids__filter--input">
+          <input
+            type="number"
+            placeholder="enter charater id (max: 671)"
+            value={idNum}
+            onChange={(e) => setIdNum(e.target.value)}
+          />
+          <button onClick={addIdInArrayHandler}>add</button>
+        </div>
+        <div className="ids__filter--output">
+          {idArray.map((i) => (
+            <p key={i}>
+              {`id-${i}`}
+              <span onClick={() => removeIdfromArrayHandler(i)}>
+                <ImCancelCircle />
+              </span>
+            </p>
+          ))}
+        </div>
+        <button className="ids__filter--submit" onClick={idsFilterHandler}>
+          Search Ids
+        </button>
       </div>
     </div>
   );
