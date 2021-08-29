@@ -2,4 +2,4 @@
 
 # LIVE DEMO
 
-https://stoic-bartik-546347.netlify.app/episodes
+https://stoic-bartik-546347.netlify.app
