@@ -1,4 +1,5 @@
 export {
+  initCharacters,
   fetchCharacter,
   filterCharacter,
   idsCharacter,

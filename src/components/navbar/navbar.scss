@@ -34,6 +34,46 @@
       justify-content: center;
       align-items: center;
 
+      @include respond(phone) {
+        display: none;
+      }
+
+      &--item {
+        margin-left: 2rem;
+
+        & a {
+          padding: 0.5rem 1rem;
+          border-radius: 0.8rem;
+          color: #3f4c6b;
+          font-size: 1.6rem;
+          border: 1px solid green;
+
+          &:hover,
+          &.active {
+            background-color: #f68657;
+            color: #fff;
+            transition: all 0.5s;
+          }
+        }
+      }
+    }
+
+    &__mobile {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      @include respond(port) {
+        display: none;
+      }
+      @include respond(land) {
+        display: none;
+      }
+      @include respond(desktop) {
+        display: none;
+      }
+
       &--item {
         margin-left: 2rem;
 
@@ -55,3 +95,72 @@
     }
   }
 }
+
+/*
+
+
+import { AiOutlineHome } from "react-icons/ai";
+import { GiGingerbreadMan } from "react-icons/gi";
+import { AiOutlinePicture } from "react-icons/ai";
+import { TiLocationOutline } from "react-icons/ti";
+
+<div className="navbar__mobile">
+          <div className="navbar__nav--item">
+            <NavLink to="/" exact>
+              <AiOutlineHome />
+            </NavLink>
+          </div>
+          <div className="navbar__mobile--item">
+            <NavLink to="/characters/">
+              <GiGingerbreadMan />
+            </NavLink>
+          </div>
+          <div className="navbar__mobile--item">
+            <NavLink to="/episodes" exact>
+              <AiOutlinePicture />
+            </NavLink>
+          </div>
+          <div className="navbar__mobile--item">
+            <NavLink to="/locations" exact>
+              <TiLocationOutline />
+            </NavLink>
+          </div>
+        </div>
+
+
+ &__mobile {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      @include respond(port) {
+        display: none;
+      }
+      @include respond(land) {
+        display: none;
+      }
+      @include respond(desktop) {
+        display: none;
+      }
+
+      &--item {
+        margin-left: 2rem;
+
+        & a {
+          padding: 0.5rem 1rem;
+          border-radius: 0.8rem;
+          color: #3f4c6b;
+          font-size: 1.6rem;
+          border: 1px solid green;
+
+          &:hover,
+          &.active {
+            background-color: #f68657;
+            color: #fff;
+            transition: all 0.5s;
+          }
+        }
+      }
+    }
+*/

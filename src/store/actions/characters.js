@@ -1,6 +1,12 @@
 import * as actionTypes from "./actionTypes";
 import axios from "axios";
 
+export const initCharacters = () => {
+  return {
+    type: actionTypes.INIT_CHARACTERS,
+  };
+};
+
 /*  FETCHING CHARACTER DATA  */
 export const fetchCharacterStart = () => {
   return {

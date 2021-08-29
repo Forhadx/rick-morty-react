@@ -34,6 +34,10 @@
       flex-direction: column;
       margin-bottom: 1.5rem;
 
+      @include respond(phone) {
+        width: 50%;
+      }
+
       & label {
         font-size: 1.4rem;
         color: $text-primary;
@@ -46,6 +50,10 @@
         border: none;
         border: 1px solid $color-gray-2;
         padding: 0.3rem 0.5rem;
+
+        @include respond(phone) {
+          width: 80%;
+        }
       }
     }
 

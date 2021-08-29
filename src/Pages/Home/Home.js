@@ -1,20 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
+import * as actions from "../../store/actions/index";
 import { BiSearchAlt } from "react-icons/bi";
 import { BsFillStarFill } from "react-icons/bs";
+import { connect } from "react-redux";
 import "./Home.scss";
 
-const Home = () => {
+import bg1 from "./bg1.gif";
+import bg2 from "./bg2.jpg";
+import cover from "./cover.jpg";
+
+const Home = (props) => {
+  const [charName, setCharName] = useState("");
+
+  const pushToCharacterPageHandler = (e) => {
+    e.preventDefault();
+    props.onInitCharacters();
+    props.history.push("/characters/c/" + charName);
+  };
+
   return (
     <div className="HomePage">
       <div
         className="HomePage__header bgImg"
         style={{
-          backgroundImage: `url(https://cdnb.artstation.com/p/assets/images/images/020/740/709/original/win-dolores-ricknmorty-gif.gif?1568981763)`,
+          backgroundImage: `url(${bg1})`,
         }}
       >
-        <form className="HomePage__header--form">
-          <input type="text" placeholder="search characters" />
-          <button>
+        <form
+          className="HomePage__header--form"
+          onSubmit={pushToCharacterPageHandler}
+        >
+          <input
+            type="text"
+            placeholder="search characters"
+            value={charName}
+            onChange={(e) => setCharName(e.target.value)}
+          />
+          <button type="submit">
             <BiSearchAlt />
           </button>
         </form>
@@ -22,7 +44,7 @@ const Home = () => {
       <div
         className="HomePage__details bgImg bgImgFixed"
         style={{
-          backgroundImage: `url(https://www.nme.com/wp-content/uploads/2020/07/Rick-and-Morty-season-5.jpg)`,
+          backgroundImage: `url(${bg2})`,
         }}
       >
         <div className="anime">
@@ -30,7 +52,7 @@ const Home = () => {
             <div
               className="anime__left--img bgImg"
               style={{
-                backgroundImage: `url(https://m.media-amazon.com/images/M/MV5BZjRjOTFkOTktZWUzMi00YzMyLThkMmYtMjEwNmQyNzliYTNmXkEyXkFqcGdeQXVyNzQ1ODk3MTQ@._V1_.jpg)`,
+                backgroundImage: `url(${cover})`,
               }}
             ></div>
             <div className="anime__left--rating">
@@ -65,4 +87,10 @@ const Home = () => {
   );
 };
 
-export default Home;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onInitCharacters: () => dispatch(actions.initCharacters()),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Home);

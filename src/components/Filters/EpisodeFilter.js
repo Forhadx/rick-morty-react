@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ImCancelCircle } from "react-icons/im";
 import classNames from "classnames";
+import "./AllFilter.scss";
 
 const EpisodeFilter = (props) => {
   const [idArray, setIdArray] = useState([]);
@@ -20,8 +21,10 @@ const EpisodeFilter = (props) => {
   };
 
   const idsFilterHandler = () => {
-    setIdArray([]);
-    props.idsFilter(idArray);
+    if (idArray.length > 0) {
+      setIdArray([]);
+      props.idsFilter(idArray);
+    }
   };
 
   const advaceFilterHandler = (e) => {

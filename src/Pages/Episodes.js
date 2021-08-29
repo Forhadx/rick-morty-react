@@ -72,6 +72,12 @@ const Episodes = (props) => {
     onFetchEpisodes(1);
   };
 
+  const pushToCharacterPageHandler = (id) => {
+    props.onInitCharacters();
+    props.onIdsEpisodes([id]);
+    props.history.push("/characters/e/" + id);
+  };
+
   return (
     <div className="page">
       <div className="page--header">
@@ -95,27 +101,26 @@ const Episodes = (props) => {
           filterArray={filterArray}
           error={props.err}
         />
-        <div>
-          <button>up</button>
-          {props.loading ? (
-            <Spinner />
-          ) : (
-            <React.Fragment>
-              <EpisodeCard episodes={props.episodes} />
-              {!props.err && (
-                <Pagination
-                  crntPage={props.crntPage}
-                  nextPage={props.nextPage}
-                  prevPage={props.prevPage}
-                  nextpageHandler={nextpageHandler}
-                  prevPageHandler={prevPageHandler}
-                  firstPageHandler={firstPageHandler}
-                />
-              )}
-            </React.Fragment>
-          )}
-        </div>
-        <div>Characters</div>
+        {props.loading ? (
+          <Spinner />
+        ) : (
+          <React.Fragment>
+            <EpisodeCard
+              episodes={props.episodes}
+              pushToCharacterPage={pushToCharacterPageHandler}
+            />
+            {!props.err && (
+              <Pagination
+                crntPage={props.crntPage}
+                nextPage={props.nextPage}
+                prevPage={props.prevPage}
+                nextpageHandler={nextpageHandler}
+                prevPageHandler={prevPageHandler}
+                firstPageHandler={firstPageHandler}
+              />
+            )}
+          </React.Fragment>
+        )}
       </div>
     </div>
   );
@@ -142,6 +147,7 @@ const mapDispatchToProps = (dispatch) => {
     onNextPage: () => dispatch(actions.nextPageEpi()),
     onPrevPage: () => dispatch(actions.prevPageEpi()),
     onFirstPage: () => dispatch(actions.firstPageEpi()),
+    onInitCharacters: () => dispatch(actions.initCharacters()),
   };
 };
 

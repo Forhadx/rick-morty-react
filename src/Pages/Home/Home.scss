@@ -19,6 +19,10 @@
       background-color: white;
       overflow: hidden;
 
+      @include respond(phone) {
+        width: 70%;
+      }
+
       & input {
         width: 100%;
         font-size: 2rem;
@@ -44,12 +48,14 @@
       margin: auto;
       max-width: $max-width;
       background-color: #212121;
-
       box-shadow: 0rem 0.125rem 0.25rem 0rem rgba(14, 30, 37, 0.12),
         0rem 0.125rem 1rem 0rem rgba(14, 30, 37, 0.32);
-
       display: grid;
       grid-template-columns: 30rem 1fr;
+
+      @include respond(phone) {
+        grid-template-columns: 1fr;
+      }
 
       &__left {
         padding: 5rem 0;
@@ -84,13 +90,17 @@
         & h1 {
           font-size: 3.5rem;
           color: #f68657;
+          margin-bottom: 1rem;
         }
         & p {
           font-size: 1.6rem;
           text-align: justify;
+          margin-bottom: 1rem;
         }
         & div {
           font-size: 1.6rem;
+          margin-bottom: 1rem;
+
           & span {
             color: #f68657;
             font-weight: bold;

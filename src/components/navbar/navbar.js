@@ -1,6 +1,10 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./navbar.scss";
+import logo from "./logo.jpg";
+import { AiFillHome, AiTwotonePicture } from "react-icons/ai";
+import { FaSnowman } from "react-icons/fa";
+import { MdAddLocation } from "react-icons/md";
 
 const Navbar = () => {
   return (
@@ -10,7 +14,7 @@ const Navbar = () => {
           to="/"
           className="navbar__logo bgImg"
           style={{
-            backgroundImage: `url(https://i.pinimg.com/originals/60/4e/70/604e7039e5b2157bb590ce16f64a8215.jpg)`,
+            backgroundImage: `url(${logo})`,
           }}
         ></Link>
         <div className="navbar__nav">
@@ -20,9 +24,7 @@ const Navbar = () => {
             </NavLink>
           </div>
           <div className="navbar__nav--item">
-            <NavLink to="/characters" exact>
-              Characters
-            </NavLink>
+            <NavLink to="/characters/">Characters</NavLink>
           </div>
           <div className="navbar__nav--item">
             <NavLink to="/episodes" exact>
@@ -32,6 +34,29 @@ const Navbar = () => {
           <div className="navbar__nav--item">
             <NavLink to="/locations" exact>
               Locations
+            </NavLink>
+          </div>
+        </div>
+
+        <div className="navbar__mobile">
+          <div className="navbar__mobile--item">
+            <NavLink to="/" exact>
+              <AiFillHome />
+            </NavLink>
+          </div>
+          <div className="navbar__mobile--item">
+            <NavLink to="/characters/">
+              <FaSnowman />
+            </NavLink>
+          </div>
+          <div className="navbar__mobile--item">
+            <NavLink to="/episodes" exact>
+              <AiTwotonePicture />
+            </NavLink>
+          </div>
+          <div className="navbar__mobile--item">
+            <NavLink to="/locations" exact>
+              <MdAddLocation />
             </NavLink>
           </div>
         </div>

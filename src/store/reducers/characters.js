@@ -12,6 +12,17 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.INIT_CHARACTERS:
+      return {
+        ...state,
+        characters: [],
+        loading: false,
+        error: false,
+        count: 0,
+        crntPage: 1,
+        prevPage: null,
+        nextPage: null,
+      };
     case actionTypes.FETCH_CHARACTERS_START:
       return {
         ...state,

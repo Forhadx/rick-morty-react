@@ -5,7 +5,11 @@ const LocationsCard = (props) => {
   return (
     <div className="location">
       {props.locations.map((loc) => (
-        <div className="location__card" key={loc.id}>
+        <div
+          className="location__card"
+          key={loc.id}
+          onClick={() => props.pushToCharacterPage(loc.id)}
+        >
           <div className="location__card--name">{loc.name}</div>
           <div className="location__card--dimension">
             <span>Dimension:</span>

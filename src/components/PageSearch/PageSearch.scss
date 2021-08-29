@@ -7,6 +7,10 @@
     display: grid;
     grid-template-columns: 80% 20%;
 
+    @include respond(phone) {
+      grid-template-columns: 100%;
+    }
+
     &--form {
       display: grid;
       grid-template-columns: 1fr 7rem;
@@ -32,6 +36,11 @@
     &--filter {
       text-align: center;
 
+      @include respond(phone) {
+        margin-top: 2rem;
+        text-align: left;
+      }
+
       & button {
         padding: 0.3rem 2rem;
         font-size: 1.6rem;
@@ -46,7 +55,7 @@
         cursor: pointer;
 
         & span {
-          font-size: 2rem;
+          font-size: 1.6rem;
           color: $color-green-2;
           margin-right: 0.5rem;
         }

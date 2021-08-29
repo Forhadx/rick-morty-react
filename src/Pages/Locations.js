@@ -83,6 +83,12 @@ const Locations = (props) => {
     onFetchLocations(1);
   };
 
+  const pushToCharacterPageHandler = (id) => {
+    props.onInitCharacters();
+    props.onIdsLocations([id]);
+    props.history.push("/characters/l/" + id);
+  };
+
   return (
     <div className="page">
       <div className="page--header">
@@ -110,7 +116,10 @@ const Locations = (props) => {
           <Spinner />
         ) : (
           <React.Fragment>
-            <LocationCard locations={props.locations} />
+            <LocationCard
+              locations={props.locations}
+              pushToCharacterPage={pushToCharacterPageHandler}
+            />
             {!props.err && (
               <Pagination
                 crntPage={props.crntPage}
@@ -149,6 +158,7 @@ const mapDispatchToProps = (dispatch) => {
     onNextPage: () => dispatch(actions.nextPageLoc()),
     onPrevPage: () => dispatch(actions.prevPageLoc()),
     onFirstPage: () => dispatch(actions.firstPageLoc()),
+    onInitCharacters: () => dispatch(actions.initCharacters()),
   };
 };
 

@@ -24,8 +24,10 @@ const CharacterFilter = (props) => {
   };
 
   const idsFilterHandler = () => {
-    setIdArray([]);
-    props.idsFilter(idArray);
+    if (idArray.length > 0) {
+      setIdArray([]);
+      props.idsFilter(idArray);
+    }
   };
 
   const advaceFilterHandler = (e) => {
@@ -90,7 +92,6 @@ const CharacterFilter = (props) => {
               onChange={(e) => setGender(e.target.value)}
             />
           </div>
-          <div className="advance__filter--form-div"></div>
           <button type="submit">Search Filter</button>
         </form>
       </div>

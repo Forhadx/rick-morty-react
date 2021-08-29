@@ -171,6 +171,9 @@ export const idsLocations = (idsArray) => {
             name
             type
             dimension
+            residents{
+              id
+            }
           }
         }`,
       };

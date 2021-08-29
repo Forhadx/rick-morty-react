@@ -173,6 +173,9 @@ export const idsEpisodes = (idsArray) => {
             name
             episode
             air_date 
+            characters{
+              id
+            }
           }
         }`,
       };
